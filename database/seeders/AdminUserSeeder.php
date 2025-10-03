@@ -20,6 +20,7 @@ class AdminUserSeeder extends Seeder
                 'password' => Hash::make('admin@example.test'),
                 'role' => 'admin',
                 'phone' => null,
+                'email_verified_at' => now(), // Add this line
             ]
         );
     }

@@ -6,6 +6,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\FileUpload;
 
 class ProductForm
 {
@@ -13,9 +15,10 @@ class ProductForm
     {
         return $schema
             ->components([
-                TextInput::make('category_id')
-                    ->numeric()
-                    ->default(null),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name') // 'category' is the relationship method in Product model, 'name' is the display column
+                    ->required(),
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('slug')
@@ -30,9 +33,19 @@ class ProductForm
                 TextInput::make('stock')
                     ->required()
                     ->numeric(),
-                Textarea::make('images')
-                    ->default(null)
-                    ->columnSpanFull(),
+                FileUpload::make('main_image')
+                    ->label('main_image')
+                    ->image()
+                    ->multiple()
+                    ->directory('products/images')
+                    ->required(),
+                FileUpload::make('images')
+                    ->label('Gallery')
+                    ->image()
+                    ->multiple()
+                    ->directory('products/gallery')
+                    ->reorderable()
+                    ->required(),
                 Toggle::make('active')
                     ->required(),
             ]);
