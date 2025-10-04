@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->integer('stock');
+            $table->string('main_image')->nullable();
             $table->json('images')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();

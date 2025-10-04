@@ -36,7 +36,7 @@ class ProductForm
                 FileUpload::make('main_image')
                     ->label('main_image')
                     ->image()
-                    ->multiple()
+                    
                     ->directory('products/images')
                     ->required(),
                 FileUpload::make('images')

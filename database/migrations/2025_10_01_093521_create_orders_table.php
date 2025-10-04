@@ -16,8 +16,7 @@ return new class extends Migration {
             $table->text('address');
             $table->text('note')->nullable();
             $table->decimal('total', 10, 2);
-            $table->string('main_image')->nullable(); // Add this line
-            $table->json('images')->nullable();
+            
             $table->enum('status', ['pending', 'accepted', 'rejected', 'cancelled'])->default('pending');
             $table->timestamps();
         });
