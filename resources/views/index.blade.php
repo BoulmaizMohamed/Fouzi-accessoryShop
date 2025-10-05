@@ -97,42 +97,19 @@
                 <div class="container">
                     <h2 class="section-title">Nos Produits</h2>
                     <div class="products-grid">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop&crop=center" alt="Plaquettes de frein" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Plaquettes+de+frein'">
-                            <h3 class="product-name">Plaquettes de frein</h3>
-                            <p class="product-price">45,99 €</p>
-                            <button class="add-to-cart-btn" data-product-id="1">Ajouter au panier</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200&h=200&fit=crop&crop=center" alt="Filtre à huile" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Filtre+a+huile'">
-                            <h3 class="product-name">Filtre à huile</h3>
-                            <p class="product-price">12,50 €</p>
-                            <button class="add-to-cart-btn" data-product-id="4">Ajouter au panier</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=200&h=200&fit=crop&crop=center" alt="Amortisseurs" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Amortisseurs'">
-                            <h3 class="product-name">Amortisseurs</h3>
-                            <p class="product-price">89,99 €</p>
-                            <button class="add-to-cart-btn" data-product-id="12">Ajouter au panier</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=200&h=200&fit=crop&crop=center" alt="Courroie de distribution" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Courroie'">
-                            <h3 class="product-name">Courroie de distribution</h3>
-                            <p class="product-price">67,80 €</p>
-                            <button class="add-to-cart-btn" data-product-id="5">Ajouter au panier</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=200&h=200&fit=crop&crop=center" alt="Phares LED" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Phares+LED'">
-                            <h3 class="product-name">Phares LED</h3>
-                            <p class="product-price">125,00 €</p>
-                            <button class="add-to-cart-btn" data-product-id="7">Ajouter au panier</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop&crop=center" alt="Pneus été" class="product-image" onerror="this.src='https://placehold.co/200x200/e60000/ffffff?text=Pneus+ete'">
-                            <h3 class="product-name">Pneus été</h3>
-                            <p class="product-price">199,99 €</p>
-                            <button class="add-to-cart-btn" data-product-id="10">Ajouter au panier</button>
-                        </div>
+                        @forelse($products as $product)
+                            <div class="product-card">
+                                <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : (is_array($product->images) && count($product->images) ? asset('storage/' . $product->images[0]) : 'https://placehold.co/200x200/e60000/ffffff?text=Produit') }}"
+                                    alt="{{ $product->name }}" class="product-image">
+                                <h3 class="product-name">{{ $product->name }}</h3>
+                                <p class="product-price">{{ number_format($product->price, 2) }} DH</p>
+                                <button class="add-to-cart-btn" data-product-id="{{ $product->id }}">Ajouter au panier</button>
+                            </div>
+                        @empty
+                            <div class="no-results">
+                                <p>Aucun produit trouvé.</p>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </section>
