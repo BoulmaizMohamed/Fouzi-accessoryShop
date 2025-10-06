@@ -36,14 +36,15 @@ class ProductForm
                 FileUpload::make('main_image')
                     ->label('main_image')
                     ->image()
-                    
                     ->directory('products/images')
+                    ->disk('public')
                     ->required(),
                 FileUpload::make('images')
                     ->label('Gallery')
                     ->image()
                     ->multiple()
                     ->directory('products/gallery')
+                    ->disk('public')
                     ->reorderable()
                     ->required(),
                 Toggle::make('active')
