@@ -38,6 +38,7 @@ class ProductForm
                     ->image()
                     ->directory('products/images')
                     ->disk('public')
+                     ->visibility('public')
                     ->required(),
                 FileUpload::make('images')
                     ->label('Gallery')
@@ -45,6 +46,7 @@ class ProductForm
                     ->multiple()
                     ->directory('products/gallery')
                     ->disk('public')
+                    ->visibility('public')
                     ->reorderable()
                     ->required(),
                 Toggle::make('active')

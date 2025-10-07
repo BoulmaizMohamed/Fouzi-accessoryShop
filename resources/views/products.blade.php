@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Catalogue complet de pièces détachées - Auto Pièces R.M">
     <title>Produits - Auto Pièces R.M</title>
+
+    {{-- Fonts & Styles --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
+
 <body>
-    <!-- Header -->
+    {{-- Header --}}
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -22,25 +25,19 @@
                     </div>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/products') }}" class="nav-link">Produits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#about" class="nav-link">À Propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#contact" class="nav-link">Contact</a>
-                    </li>
+                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="{{ url('/products') }}" class="nav-link active">Produits</a></li>
+                    <li class="nav-item"><a href="{{ url('/#about') }}" class="nav-link">À Propos</a></li>
+                    <li class="nav-item"><a href="{{ url('/#contact') }}" class="nav-link">Contact</a></li>
                 </ul>
+
                 <div class="cart-counter">
-                    <a href="cart.html" class="cart-link">
+                    <a href="{{ url('/cart') }}" class="cart-link">
                         <span class="cart-icon">🛒</span>
                         <span class="cart-count">0</span>
                     </a>
                 </div>
+
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -50,7 +47,7 @@
         </nav>
     </header>
 
-    <!-- Products Header -->
+    {{-- Products Header --}}
     <section class="products-header">
         <div class="container">
             <h1 class="page-title">Nos Produits</h1>
@@ -58,7 +55,7 @@
         </div>
     </section>
 
-    <!-- Filters Section -->
+    {{-- Filters Section --}}
     <section class="filters-section">
         <div class="container">
             <div class="filters-container">
@@ -89,24 +86,42 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    {{-- Products Section --}}
     <section class="products-catalog">
         <div class="container">
             <div id="productsGrid" class="products-grid-full">
-                <!-- Products will be populated by JavaScript -->
-            </div>
-            <div id="noResults" class="no-results hidden">
-                <p>Aucun produit trouvé pour votre recherche.</p>
+                @forelse($products as $product)
+                    <div class="product-card">
+                        <img 
+                            src="{{ $product->main_image 
+                                    ? asset('storage/' . $product->main_image)
+                                    : (is_array($product->images) && count($product->images) 
+                                        ? asset('storage/' . $product->images[0]) 
+                                        : 'https://placehold.co/200x200/e60000/ffffff?text=Produit') }}"
+                            alt="{{ $product->name }}" 
+                            class="product-image">
+
+                        <h3 class="product-name">{{ $product->name }}</h3>
+                        <p class="product-price">{{ number_format($product->price, 2) }} DH</p>
+                        <button class="add-to-cart-btn" data-product-id="{{ $product->id }}">
+                            Ajouter au panier
+                        </button>
+                    </div>
+                @empty
+                    <div id="noResults" class="no-results">
+                        <p>Aucun produit trouvé pour votre recherche.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    {{-- Footer --}}
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <p>&copy; 2025 Auto Pièces R.M - Tous droits réservés</p>
+                    <p>&copy; {{ date('Y') }} Auto Pièces R.M - Tous droits réservés</p>
                 </div>
                 <div class="social-links">
                     <a href="#" target="_blank" class="social-link">Facebook</a>
@@ -116,7 +131,5 @@
             </div>
         </div>
     </footer>
-
-    
 </body>
 </html>
