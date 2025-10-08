@@ -9,8 +9,12 @@ use App\Http\Controllers\ProductController;
     return view('index');
 });*/
 
-Route::get('/products', function () {
-    return view('products');
+Route::get('/pro1', function () {
+    return view('products-standalone');
+});
+
+Route::get('/pro2', function () {
+    return view('products-standalone');
 });
 
 
