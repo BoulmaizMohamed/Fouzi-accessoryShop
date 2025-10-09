@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductController;
 });*/
 
 Route::get('/pro1', function () {
-    return view('products-standalone');
+    return view('product1');
 });
 
 Route::get('/pro2', function () {

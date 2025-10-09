@@ -3,65 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catalogue complet de pièces détachées - Auto Pièces R.M">
     <title>Produits - Auto Pièces R.M</title>
-
-    {{-- Fonts & Styles --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
-
 <body>
-    {{-- Header --}}
     <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <div class="logo-placeholder">
-                        <span class="logo-text">AUTO PIÈCES R.M</span>
-                    </div>
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <h1>Auto Pièces R.M</h1>
+                    <span class="tagline">Votre spécialiste en pièces détachées automobiles</span>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Accueil</a></li>
-                    <li class="nav-item"><a href="{{ url('/products') }}" class="nav-link active">Produits</a></li>
-                    <li class="nav-item"><a href="{{ url('/#about') }}" class="nav-link">À Propos</a></li>
-                    <li class="nav-item"><a href="{{ url('/#contact') }}" class="nav-link">Contact</a></li>
-                </ul>
-
-                <div class="cart-counter">
-                    <a href="{{ url('/cart') }}" class="cart-link">
-                        <span class="cart-icon">🛒</span>
-                        <span class="cart-count">0</span>
-                    </a>
-                </div>
-
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link">Accueil</a>
+                    <a href="#" class="nav-link active">Produits</a>
+                    <a href="#" class="nav-link">Services</a>
+                    <a href="#" class="nav-link">Contact</a>
+                    <button id="products-theme-toggle-btn" class="theme-toggle-button" aria-label="Basculer le mode sombre">
+                        <span class="theme-toggle-icon">🌙</span>
+                    </button>
+                </nav>
             </div>
-        </nav>
+        </div>
     </header>
 
-     <main class="main">
-       </br>
-</br>
-</br>
-</br>
-</br>
-
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero__title">Nos Pièces Détachées</h2>
+                <p class="hero__subtitle">Découvrez notre large gamme de pièces automobiles de qualité</p>
+            </div>
+        </section>
 
         <section class="products-section">
             <div class="container">
                 <div class="filters">
-                    <h3 class="filters__title" >Filtrer par catégorie</h3>
-                    </br>
-</br>
-
+                    <h3 class="filters__title">Filtrer par catégorie</h3>
                     <div class="filter-buttons">
                         <button class="filter-btn active" data-category="Tous">Tous</button>
                         <button class="filter-btn" data-category="Freinage">Freinage</button>
@@ -70,8 +48,6 @@
                         <button class="filter-btn" data-category="Pneumatiques">Pneumatiques</button>
                     </div>
                 </div>
-</br>
-</br>
 
                 <div class="products-grid">
                     <!-- Freinage Products -->
@@ -202,20 +178,12 @@
         </section>
     </main>
 
-    {{-- Footer --}}
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p>&copy; {{ date('Y') }} Auto Pièces R.M - Tous droits réservés</p>
-                </div>
-                <div class="social-links">
-                    <a href="#" target="_blank" class="social-link">Facebook</a>
-                    <a href="#" target="_blank" class="social-link">Instagram</a>
-                    <a href="#" target="_blank" class="social-link">WhatsApp</a>
-                </div>
-            </div>
+            <p>&copy; 2025 Auto Pièces R.M - Tous droits réservés</p>
         </div>
     </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
