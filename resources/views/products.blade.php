@@ -56,150 +56,52 @@
 
 
         <section class="products-section">
+    <div class="container">
+        <div class="filters">
+            <div class="filter-buttons">
+                <a href="{{ route('products.index') }}" 
+                   class="filter-btn {{ request('category') == null ? 'active' : '' }}">Tous</a>
+
+                @foreach($categories as $category)
+                    <a href="{{ route('products.index', ['category' => $category]) }}" 
+                       class="filter-btn {{ request('category') == $category ? 'active' : '' }}">
+                        {{ $category }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+</br>
+</br>
+        <section id="products" class="products">
             <div class="container">
-                <div class="filters">
-                    <h3 class="filters__title" >Filtrer par catégorie</h3>
-                    </br>
-</br>
-
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-category="Tous">Tous</button>
-                        <button class="filter-btn" data-category="Freinage">Freinage</button>
-                        <button class="filter-btn" data-category="Moteur">Moteur</button>
-                        <button class="filter-btn" data-category="Éclairage">Éclairage</button>
-                        <button class="filter-btn" data-category="Pneumatiques">Pneumatiques</button>
-                    </div>
-                </div>
-</br>
-</br>
-
+                <h2 class="section-title">Nos Produits</h2>
                 <div class="products-grid">
-                    <!-- Freinage Products -->
-                    <div class="product-card" data-category="Freinage">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Plaquettes de frein Peugeot">
+                    @forelse($products as $product)
+                        <div class="product-card">
+                            <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : (is_array($product->images) && count($product->images) ? asset('storage/' . $product->images[0]) : 'https://placehold.co/200x200/e60000/ffffff?text=Produit') }}"
+                                alt="{{ $product->name }}" class="product-image">
+                            <h3 class="product-name">{{ $product->name }}</h3>
+                            <p class="product-price">{{ number_format($product->price, 2) }} DH</p>
+                            <button class="add-to-cart-btn" data-product-id="{{ $product->id }}">Ajouter au panier</button>
                         </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Plaquettes de frein Peugeot</h4>
-                            <span class="product-category">Freinage</span>
-                            <div class="product-price">45,99 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
+                    @empty
+                        <div class="no-results">
+                            <p>Aucun produit trouvé.</p>
                         </div>
-                    </div>
+                    @endforelse
+                </div>
 
-                    <div class="product-card" data-category="Freinage">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=300&h=200&fit=crop" alt="Disques de frein Renault">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Disques de frein Renault</h4>
-                            <span class="product-category">Freinage</span>
-                            <div class="product-price">89,50 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <!-- Moteur Products -->
-                    <div class="product-card" data-category="Moteur">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=300&h=200&fit=crop" alt="Filtre à huile">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Filtre à huile</h4>
-                            <span class="product-category">Moteur</span>
-                            <div class="product-price">12,50 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="Moteur">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=300&h=200&fit=crop" alt="Courroie de distribution">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Courroie de distribution</h4>
-                            <span class="product-category">Moteur</span>
-                            <div class="product-price">67,80 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="Moteur">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&h=200&fit=crop" alt="Bougies d'allumage">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Bougies d'allumage</h4>
-                            <span class="product-category">Moteur</span>
-                            <div class="product-price">28,90 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="Moteur">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300&h=200&fit=crop" alt="Amortisseurs">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Amortisseurs</h4>
-                            <span class="product-category">Moteur</span>
-                            <div class="product-price">89,99 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <!-- Éclairage Products -->
-                    <div class="product-card" data-category="Éclairage">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&h=200&fit=crop" alt="Phares LED">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Phares LED</h4>
-                            <span class="product-category">Éclairage</span>
-                            <div class="product-price">125,00 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="Éclairage">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Ampoules H7">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Ampoules H7</h4>
-                            <span class="product-category">Éclairage</span>
-                            <div class="product-price">15,99 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <!-- Pneumatiques Products -->
-                    <div class="product-card" data-category="Pneumatiques">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Pneus été">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Pneus été</h4>
-                            <span class="product-category">Pneumatiques</span>
-                            <div class="product-price">199,99 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-category="Pneumatiques">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300&h=200&fit=crop" alt="Pneus hiver">
-                        </div>
-                        <div class="product-info">
-                            <h4 class="product-name">Pneus hiver</h4>
-                            <span class="product-category">Pneumatiques</span>
-                            <div class="product-price">219,99 €</div>
-                            <button class="btn btn--primary add-to-cart">Ajouter au panier</button>
-                        </div>
-                    </div>
+                {{-- Pagination --}}
+                <div class="pagination-container">
+                    {{ $products->appends(request()->query())->links() }}
                 </div>
             </div>
         </section>
+    </div>
+</section>
+        </br>
+        </br>
+        </br>
     </main>
 
     {{-- Footer --}}
