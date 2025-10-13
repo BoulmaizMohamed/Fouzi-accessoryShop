@@ -23,8 +23,8 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link">Accueil</a>
-                    </li>
+                    <a href="{{ route('home') }}" class="nav-link">Accueil</a>
+                </li>
                     <li class="nav-item">
                         <a href="{{ url('/products') }}" class="nav-link">Produits</a>
                     </li>
@@ -35,10 +35,11 @@
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                 </ul>
-                <div class="cart-counter" onclick="showCart()">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count">0</span>
-                </div>
+               <li class="nav-item">
+                    <a href="{{ route('cart.index') }}" class="nav-link">
+                        Panier <span class="cart-count">{{ app(\App\Services\Cart::class)->count() }}</span>
+                    </a>
+               </li>
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -93,7 +94,7 @@
             </section>
 
             <!-- Products Preview Section -->
-            <section id="products" class="products">
+           <section id="products" class="products">
                 <div class="container">
                     <h2 class="section-title">Nos Produits</h2>
                     <div class="products-grid">
@@ -102,8 +103,15 @@
                                 <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : (is_array($product->images) && count($product->images) ? asset('storage/' . $product->images[0]) : 'https://placehold.co/200x200/e60000/ffffff?text=Produit') }}"
                                     alt="{{ $product->name }}" class="product-image">
                                 <h3 class="product-name">{{ $product->name }}</h3>
-                                <p class="product-price">{{ number_format($product->price, 2) }} DH</p>
-                                <button class="add-to-cart-btn" data-product-id="{{ $product->id }}">Ajouter au panier</button>
+                                <p class="product-price">{{ number_format($product->price, 2) }} DZ</p>
+                                
+                                <form action="{{ route('cart.add', $product) }}" method="post" class="add-to-cart-form">
+                                    @csrf
+                                    <div class="quantity-selector">
+                                        <input type="number" name="qty" min="1" value="1" class="qty-input" hidden>
+                                        <button type="submit" class="add-to-cart-btn">Ajouter au panier</button>
+                                    </div>
+                                </form>
                             </div>
                         @empty
                             <div class="no-results">
