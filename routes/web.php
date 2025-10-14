@@ -25,3 +25,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/dashboard', [ProductController::class, 'home'])->name('dashboard');
