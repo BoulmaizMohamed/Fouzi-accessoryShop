@@ -30,7 +30,10 @@
                     @forelse($products as $product)
                         <div class="product-card">
                             <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : (is_array($product->images) && count($product->images) ? asset('storage/' . $product->images[0]) : 'https://placehold.co/200x200/e60000/ffffff?text=Produit') }}"
-                                alt="{{ $product->name }}" class="product-image">
+                                alt="{{ $product->name }}" 
+                                class="product-image"
+                                data-desc="{{ $product->description }}"
+                                data-images='@json($product->images ?? [])'>
                             <h3 class="product-name">{{ $product->name }}</h3>
                             <p class="product-price">{{ number_format($product->price, 2) }} DZ</p>
                             
@@ -71,15 +74,17 @@
         </div>
 
         <div class="product-quickview__content">
-            <span id="qv-category" class="qv-category" hidden>Catégorie</span>
+           
             <h3 id="qv-title" class="qv-title">Nom du produit</h3>
 
+            <p id="qv-desc" class="qv-desc">Description du produit.</p>
+
             <div class="qv-meta">
-                <span id="qv-price" class="qv-price">0,00 DH</span>
+                <span id="qv-price" class="qv-price">0,00 Dz</span>
                 <span id="qv-stock" class="qv-stock"></span>
             </div>
 
-            <p id="qv-desc" class="qv-desc">Description du produit.</p>
+           
 
             <div class="qv-actions">
                 <div class="qv-qty">
@@ -107,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const product = {
                 title: img.closest('.product-card').querySelector('.product-name').textContent,
                 price: img.closest('.product-card').querySelector('.product-price').textContent,
-                desc: img.dataset.desc || '',
+                desc: img.dataset.desc || 'Aucune description disponible.',
                 main: img.src,
                 gallery: img.dataset.images ? JSON.parse(img.dataset.images) : [],
             };
@@ -121,8 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear old thumbs
             qvThumbs.innerHTML = '';
 
-            // Combine all images
-            const allImages = [product.main, ...product.gallery];
+            // Combine all images - filter out empty/null values
+            const galleryImages = product.gallery
+                .filter(imgPath => imgPath)
+                .map(imgPath => imgPath.startsWith('http') ? imgPath : `/storage/${imgPath}`);
+            
+            const allImages = [product.main, ...galleryImages];
 
             allImages.forEach((src, i) => {
                 const thumb = document.createElement('img');
