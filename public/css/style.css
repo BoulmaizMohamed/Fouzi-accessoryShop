@@ -731,28 +731,49 @@ select.form-control {
   font-size: 18px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  position: relative;
 }
 
-.cart-counter:hover {
-  transform: scale(1.05);
+.cart-counter .cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .cart-icon {
   font-size: 24px;
+  line-height: 1;
+  display: inline-block;
 }
 
 .cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9999px;
   background-color: #e60000;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 0 2px #fff; /* ring to separate from header */
 }
+
+.cart-counter:hover .cart-count {
+  transform: translateY(-1px);
+}
+
+/* Hide badge when empty */
+.cart-count:empty { display: none; }
 
 .hamburger {
   display: none;

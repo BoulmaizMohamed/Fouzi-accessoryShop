@@ -43,9 +43,10 @@
                 </ul>
 
                 <div class="cart-counter">
-                    <a href="{{ route('cart.index') }}" class="cart-link">
-                        <span class="cart-icon">🛒</span>
-                        <span class="cart-count">{{ app(\App\Services\Cart::class)->count() }}</span>
+                    @php($cartCount = app(\App\Services\Cart::class)->count())
+                    <a href="{{ route('cart.index') }}" class="cart-link" aria-label="Panier ({{ $cartCount }} article{{ $cartCount > 1 ? 's' : '' }})">
+                        <span class="cart-icon" aria-hidden="true">🛒</span>
+                        <span class="cart-count">{{ $cartCount ?: '' }}</span>
                     </a>
                 </div>
 

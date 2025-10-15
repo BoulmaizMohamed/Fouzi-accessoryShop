@@ -1,11 +1,10 @@
-
 @extends('layouts.app')
 
 @section('title', 'Panier - Auto Pièces R.M')
 @section('nav-cart', 'active')
 
 @section('content')
-<section class="cart-section">
+<section class="cart-section" data-color-scheme="light">
     <div class="container">
         <h1 class="section-title">Votre Panier</h1>
 
@@ -21,7 +20,7 @@
                 <div class="empty-cart-icon">🛒</div>
                 <h2>Votre panier est vide</h2>
                 <p>Découvrez nos produits et ajoutez-les à votre panier</p>
-                <a href="{{ route('products.index') }}" class="btn btn-primary">Voir nos produits</a>
+                <a href="{{ route('products.index') }}" class="btn btn--primary">Voir nos produits</a>
             </div>
         @else
             <div class="cart-content">
@@ -47,7 +46,7 @@
                                     @method('PATCH')
                                     <div class="quantity-controls">
                                         <input type="number" name="qty" min="1" value="{{ $item['qty'] }}" class="quantity-input">
-                                        <button type="submit" class="btn btn-sm">Mettre à jour</button>
+                                        <button type="submit" class="btn btn--sm btn--secondary">Mettre à jour</button>
                                     </div>
                                 </form>
                             </div>
@@ -79,7 +78,7 @@
                         </div>
                         <form action="{{ route('cart.clear') }}" method="post" class="clear-cart-form">
                             @csrf 
-                            <button type="submit" class="btn btn-outline">Vider le panier</button>
+                            <button type="submit" class="btn btn--outline">Vider le panier</button>
                         </form>
                     </div>
                 </div>
@@ -125,7 +124,7 @@
                                       class="form-textarea" rows="3">{{ old('notes') }}</textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-full" 
+                        <button type="submit" class="btn btn--primary btn--full-width" 
                                 {{ empty($items) ? 'disabled' : '' }}>
                             Confirmer la commande ({{ number_format($total, 2) }} Dz)
                         </button>
