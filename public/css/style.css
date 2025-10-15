@@ -1413,7 +1413,7 @@ select.form-control {
   /* ... rest of hero styles ... */
 }
 
-/* Quick View Overlay - FIXED STYLING */
+/* Quick View Overlay - FIXED SIZING & DESCRIPTION */
 .product-quickview {
   display: none;
   position: fixed;
@@ -1445,8 +1445,9 @@ select.form-control {
   border-radius: 12px;
   width: 90%;
   max-width: 900px;
+  height: 600px; /* Fixed height */
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden; /* Prevent content overflow */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
@@ -1479,11 +1480,12 @@ select.form-control {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: 100%;
 }
 
 .product-quickview__media img {
   width: 100%;
-  max-height: 400px;
+  height: 350px; /* Fixed height */
   object-fit: contain;
   border-radius: 10px;
   background: #f9f9f9;
@@ -1496,6 +1498,7 @@ select.form-control {
   gap: 10px;
   overflow-x: auto;
   padding: 5px 0;
+  flex-shrink: 0; /* Prevent thumbnails from shrinking */
 }
 
 .product-quickview__thumbs::-webkit-scrollbar {
@@ -1509,7 +1512,7 @@ select.form-control {
 
 .product-quickview__thumbs img {
   width: 70px;
-  height: 70px;
+  height: 70px; /* Fixed height */
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -1518,20 +1521,13 @@ select.form-control {
   flex-shrink: 0;
 }
 
-.product-quickview__thumbs img:hover {
-  transform: scale(1.05);
-}
-
-.product-quickview__thumbs img.active {
-  border-color: #e60000;
-  box-shadow: 0 0 8px rgba(230, 0, 0, 0.4);
-}
-
 .product-quickview__content {
   display: flex;
   flex-direction: column;
   gap: 15px;
   color: #333;
+  overflow-y: auto; /* Allow scrolling if needed */
+  padding-right: 10px;
 }
 
 .qv-title {
@@ -1557,8 +1553,40 @@ select.form-control {
 .qv-desc {
   color: #555;
   line-height: 1.6;
-  margin-bottom: 15px;
   font-size: 1rem;
+  position: relative;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.qv-desc.collapsed {
+  max-height: 4.8em; /* Show ~3 lines (1.6 line-height × 3) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qv-desc.expanded {
+  max-height: none;
+}
+
+.qv-desc-toggle {
+  display: block;
+  color: #e60000;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.qv-desc-toggle:hover {
+  color: #c00000;
 }
 
 .qv-actions {
@@ -1628,15 +1656,17 @@ select.form-control {
     grid-template-columns: 1fr;
     padding: 20px;
     width: 95%;
+    height: auto;
+    max-height: 90vh;
   }
   
   .product-quickview__media img {
-    max-height: 300px;
+    height: 250px; /* Fixed height for mobile */
   }
   
   .product-quickview__thumbs img {
     width: 60px;
-    height: 60px;
+    height: 60px; /* Fixed height for mobile */
   }
   
   .qv-title {
@@ -1655,7 +1685,7 @@ select.form-control {
   }
   
   .product-quickview__media img {
-    max-height: 250px;
+    height: 220px; /* Fixed height for small mobile */
   }
   
   .qv-actions {

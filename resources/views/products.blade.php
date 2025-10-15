@@ -33,7 +33,10 @@
                                 alt="{{ $product->name }}" 
                                 class="product-image"
                                 data-desc="{{ $product->description }}"
-                                data-images='@json($product->images ?? [])'>
+                                data-images='@json($product->images ?? [])'
+                                data-add-url="{{ route('cart.add', $product) }}"
+                                data-id="{{ $product->id }}"
+                                data-price="{{ number_format($product->price, 2) }}">
                             <h3 class="product-name">{{ $product->name }}</h3>
                             <p class="product-price">{{ number_format($product->price, 2) }} DZ</p>
                             
@@ -74,17 +77,13 @@
         </div>
 
         <div class="product-quickview__content">
-           
             <h3 id="qv-title" class="qv-title">Nom du produit</h3>
-
             <p id="qv-desc" class="qv-desc">Description du produit.</p>
 
             <div class="qv-meta">
                 <span id="qv-price" class="qv-price">0,00 Dz</span>
                 <span id="qv-stock" class="qv-stock"></span>
             </div>
-
-           
 
             <div class="qv-actions">
                 <div class="qv-qty">
@@ -101,12 +100,52 @@
 
 @section('scripts')
 <script>
-// Quick View Logic
 document.addEventListener('DOMContentLoaded', () => {
     const quickview = document.getElementById('product-quickview');
     const qvImage = document.getElementById('qv-image');
     const qvThumbs = document.getElementById('qv-thumbs');
+    const qvDesc = document.getElementById('qv-desc');
+    const qvAddBtn = document.getElementById('qv-add');
+    const qvQty = document.getElementById('qv-qty');
+    let currentAddUrl = null;
 
+    // Handle qty buttons
+    document.querySelectorAll('[data-qv-qty]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            let val = parseInt(qvQty.value) || 1;
+            if (btn.dataset.qvQty === 'inc') qvQty.value = val + 1;
+            if (btn.dataset.qvQty === 'dec' && val > 1) qvQty.value = val - 1;
+        });
+    });
+
+    // Toggle long description
+    function setupDescriptionToggle(description) {
+        const wordCount = description.split(' ').length;
+        const charCount = description.length;
+
+        if (charCount > 100 || wordCount > 20) {
+            qvDesc.classList.add('collapsed');
+            const toggleBtn = document.createElement('span');
+            toggleBtn.className = 'qv-desc-toggle';
+            toggleBtn.textContent = 'Voir plus';
+            toggleBtn.addEventListener('click', function() {
+                const isCollapsed = qvDesc.classList.contains('collapsed');
+                qvDesc.classList.toggle('collapsed');
+                qvDesc.classList.toggle('expanded');
+                this.textContent = isCollapsed ? 'Voir moins' : 'Voir plus';
+            });
+            const existingToggle = qvDesc.parentNode.querySelector('.qv-desc-toggle');
+            if (existingToggle) existingToggle.remove();
+            qvDesc.parentNode.insertBefore(toggleBtn, qvDesc.nextSibling);
+        } else {
+            qvDesc.classList.remove('collapsed');
+            qvDesc.classList.add('expanded');
+            const existingToggle = qvDesc.parentNode.querySelector('.qv-desc-toggle');
+            if (existingToggle) existingToggle.remove();
+        }
+    }
+
+    // Open Quick View
     document.querySelectorAll('.product-image').forEach(img => {
         img.addEventListener('click', () => {
             const product = {
@@ -115,22 +154,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 desc: img.dataset.desc || 'Aucune description disponible.',
                 main: img.src,
                 gallery: img.dataset.images ? JSON.parse(img.dataset.images) : [],
+                addUrl: img.dataset.addUrl
             };
 
-            // Display main image
             qvImage.src = product.main;
             document.getElementById('qv-title').textContent = product.title;
             document.getElementById('qv-price').textContent = product.price;
             document.getElementById('qv-desc').textContent = product.desc;
+            currentAddUrl = product.addUrl;
+            qvQty.value = 1;
 
-            // Clear old thumbs
+            setupDescriptionToggle(product.desc);
             qvThumbs.innerHTML = '';
 
-            // Combine all images - filter out empty/null values
             const galleryImages = product.gallery
                 .filter(imgPath => imgPath)
                 .map(imgPath => imgPath.startsWith('http') ? imgPath : `/storage/${imgPath}`);
-            
             const allImages = [product.main, ...galleryImages];
 
             allImages.forEach((src, i) => {
@@ -149,9 +188,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close actions
+    // Add to cart (inside modal)
+    qvAddBtn.addEventListener('click', async () => {
+        if (!currentAddUrl) return;
+        const qty = qvQty.value || 1;
+        const formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}');
+        formData.append('qty', qty);
+
+        qvAddBtn.disabled = true;
+        qvAddBtn.textContent = 'Ajout...';
+
+        try {
+            const response = await fetch(currentAddUrl, { method: 'POST', body: formData });
+            if (response.ok) {
+                alert('Produit ajouté au panier ! 🛒');
+                quickview.classList.remove('active');
+            } else {
+                alert('Erreur lors de l’ajout au panier.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Une erreur s’est produite.');
+        }
+
+        qvAddBtn.textContent = 'Ajouter au panier';
+        qvAddBtn.disabled = false;
+    });
+
+    // Close Quick View
     document.querySelectorAll('[data-qv-close]').forEach(btn => {
-        btn.addEventListener('click', () => quickview.classList.remove('active'));
+        btn.addEventListener('click', () => {
+            quickview.classList.remove('active');
+            qvDesc.classList.remove('collapsed', 'expanded');
+            const toggleBtn = qvDesc.parentNode.querySelector('.qv-desc-toggle');
+            if (toggleBtn) toggleBtn.remove();
+        });
     });
 });
 </script>
