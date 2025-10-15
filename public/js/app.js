@@ -118,6 +118,7 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        // Let Laravel handle the navigation
     });
 });
 
@@ -168,34 +169,6 @@ function showCart() {
     showPage('cart');
     renderCart();
 }
-
-// Navigation event listeners
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        
-        if (targetId === '#products-catalog') {
-            showProductsCatalog();
-        } else if (targetId === '#home' || targetId === '#about' || targetId === '#contact') {
-            showHome();
-            // Smooth scroll to section if not home
-            if (targetId !== '#home') {
-                setTimeout(() => {
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const targetPosition = targetSection.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 100);
-            }
-        }
-    });
-});
 
 // Product Catalog Functions
 function renderProductsCatalog(filterCategory = 'all') {
