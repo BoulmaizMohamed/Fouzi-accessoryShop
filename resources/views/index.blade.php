@@ -19,31 +19,43 @@
 <!-- Brands Section -->
 <section id="brands" class="brands">
     <div class="container">
-        <h2 class="section-title">Nos Marques</h2>
         <div class="brands-grid">
             <div class="brand-item">
-                <div class="brand-logo-img">
-                    <img src="https://images.unsplash.com/photo-1621936746098-c4e014110c95?w=120&h=60&fit=crop&crop=center" alt="Peugeot" class="brand-image" onerror="this.src='https://placehold.co/120x60/e60000/ffffff?text=PEUGEOT'">
+                <div class="brand-icon-bg">
+                    <img src="{{ asset('img/peugeot.png') }}" alt="Peugeot">
                 </div>
+                <h3 class="brand-title">Peugeot</h3>
+                <p class="brand-subtitle">Fiabilité et performance</p>
             </div>
+
             <div class="brand-item">
-                <div class="brand-logo-img">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=120&h=60&fit=crop&crop=center" alt="Renault" class="brand-image" onerror="this.src='https://placehold.co/120x60/0066cc/ffffff?text=RENAULT'">
+                <div class="brand-icon-bg">
+                    <img src="{{ asset('img/renault.png') }}" alt="Renault">
                 </div>
+                <h3 class="brand-title">Renault</h3>
+                <p class="brand-subtitle">Innovation au quotidien</p>
             </div>
+
             <div class="brand-item">
-                <div class="brand-logo-img">
-                    <img src="https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=120&h=60&fit=crop&crop=center" alt="Citroën" class="brand-image" onerror="this.src='https://placehold.co/120x60/cc0000/ffffff?text=CITROEN'">
+                <div class="brand-icon-bg">
+                    <img src="{{ asset('img/citroen.png') }}" alt="Citroën">
                 </div>
+                <h3 class="brand-title">Citroën</h3>
+                <p class="brand-subtitle">Confort et style français</p>
             </div>
+
             <div class="brand-item">
-                <div class="brand-logo-img">
-                    <img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?w=120&h=60&fit=crop&crop=center" alt="Dacia" class="brand-image" onerror="this.src='https://placehold.co/120x60/666666/ffffff?text=DACIA'">
+                <div class="brand-icon-bg">
+                    <img src="{{ asset('img/dacia.png') }}" alt="Dacia">
                 </div>
+                <h3 class="brand-title">Dacia</h3>
+                <p class="brand-subtitle">Accessible et robuste</p>
             </div>
+            
         </div>
     </div>
 </section>
+
 
 <!-- Products Preview Section -->
 <section id="products" class="products">
