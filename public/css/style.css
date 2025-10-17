@@ -802,22 +802,17 @@ select.form-control {
 }
 
 .nav-search input[type="search"] {
-  width: 260px;
-  max-width: 100%;
-  padding: 8px 12px;
-  border-radius: 9999px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  font-size: 14px;
-  outline: none;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
-  -webkit-appearance: none;
+  background-color: var(--color-white); /* Change to your desired background color */
+  border: 1px solid var(--color-gray-300); /* Border color */
+  border-radius: var(--radius-base); /* Rounded corners */
+  padding: var(--space-2) var(--space-4); /* Padding for better spacing */
+  font-size: var(--font-size-base); /* Font size */
+  transition: border-color 0.3s; /* Smooth transition for border color */
 }
 
-.nav-search input[type="search"]::placeholder {
-  color: var(--color-text-secondary);
-  opacity: 0.9;
+.nav-search input[type="search"]:focus {
+  border-color: var(--color-teal-500); /* Change border color on focus */
+  outline: none; /* Remove default outline */
 }
 
 .nav-search button {
@@ -874,7 +869,7 @@ select.form-control {
 .hero {
   height: 100vh;
   margin-top: -70px; /* Negative margin to compensate for main-content padding */
-  background-image: linear-gradient(rgba(124, 124, 124, 0.5), rgba(148, 147, 147, 0.671)),
+  background-image: linear-gradient(rgba(124, 124, 124, 0.849), rgba(255, 255, 255, 0.582)),
     url('/img/hero.png');
   background-size: cover;
   background-position: center;
@@ -1488,6 +1483,15 @@ select.form-control {
   pointer-events: none !important;
 }
 
+/* FIX: allow clicks inside the hero overlay */
+.hero-overlay {
+  pointer-events: auto !important;
+}
+.hero-overlay .hero-content,
+.hero-overlay .cta-button {
+  pointer-events: auto;
+}
+
 /* Ensure main content doesn't overlap header */
 .main-content {
   padding-top: 70px; /* Height of header */
@@ -1784,4 +1788,117 @@ select.form-control {
   .qv-add {
     width: 100%;
   }
+}
+/* ============================================
+   PAGINATION STYLES
+   ============================================ */
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    padding: 2rem 0;
+}
+
+.custom-pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-list {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.pagination-item {
+    display: inline-block;
+}
+
+.pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0.5rem 0.875rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Active Page */
+.pagination-item.active .pagination-link {
+    background-color: #e60000;
+    color: #fff;
+    border-color: #e60000;
+    box-shadow: 0 4px 12px rgba(230, 0, 0, 0.3);
+    cursor: default;
+}
+
+/* Hover Effect (not for active or disabled) */
+.pagination-item:not(.active):not(.disabled) .pagination-link:hover {
+    background-color: #e60000;
+    color: #fff;
+    border-color: #e60000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 0, 0, 0.25);
+}
+
+/* Disabled Links */
+.pagination-item.disabled .pagination-link {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #f5f5f5;
+}
+
+/* Previous/Next Buttons */
+.pagination-item:first-child .pagination-link,
+.pagination-item:last-child .pagination-link {
+    font-weight: 700;
+    padding: 0.5rem 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination-list {
+        gap: 0.25rem;
+    }
+    
+    .pagination-link {
+        min-width: 38px;
+        height: 38px;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Hide some page numbers on mobile */
+    .pagination-item:not(.active):not(.disabled):not(:first-child):not(:last-child):nth-child(n+5):nth-last-child(n+5) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination-link {
+        min-width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+    
+    /* Show only active, prev, next on very small screens */
+    .pagination-item:not(.active):not(.disabled):not(:first-child):not(:last-child):not(:nth-child(2)):not(:nth-last-child(2)) {
+        display: none;
+    }
 }
