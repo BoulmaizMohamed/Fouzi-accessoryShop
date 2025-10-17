@@ -42,6 +42,13 @@
                     </li>
                 </ul>
 
+                <!-- Search form -->
+                <form action="{{ route('search') }}" method="GET" class="nav-search" role="search" aria-label="Recherche produits">
+                    <label for="nav-search-input" class="sr-only">Rechercher</label>
+                    <input id="nav-search-input" name="q" type="search" placeholder="Rechercher des pièces..." value="{{ request('q') }}" aria-label="Rechercher des produits">
+                    <button type="submit" aria-label="Lancer la recherche">🔍</button>
+                </form>
+
                 <div class="cart-counter">
                     @php($cartCount = app(\App\Services\Cart::class)->count())
                     <a href="{{ route('cart.index') }}" class="cart-link" aria-label="Panier ({{ $cartCount }} article{{ $cartCount > 1 ? 's' : '' }})">

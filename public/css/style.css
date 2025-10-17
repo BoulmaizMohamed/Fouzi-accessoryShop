@@ -789,12 +789,93 @@ select.form-control {
   transition: 0.3s;
 }
 
+/* Navbar search styles */
+.nav-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+  min-width: 40px;
+  max-width: 420px;
+  transition: width 0.18s ease, opacity 0.18s ease;
+  pointer-events: auto;
+}
+
+.nav-search input[type="search"] {
+  width: 260px;
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  -webkit-appearance: none;
+}
+
+.nav-search input[type="search"]::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.9;
+}
+
+.nav-search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+/* Focus state */
+.nav-search:focus-within input[type="search"] {
+  box-shadow: var(--focus-ring);
+  border-color: var(--color-primary);
+}
+
+/* Small screens: hide input and keep icon only */
+@media (max-width: 760px) {
+  .nav-search {
+    margin-left: 8px;
+  }
+
+  .nav-search input[type="search"] {
+    display: none;
+    width: 0;
+    padding: 0;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-search button {
+    font-size: 20px;
+    padding: 6px;
+  }
+
+  /* Ensure header elements stay aligned on small screens */
+  .nav-container {
+    gap: 8px;
+  }
+}
+
+/* If search sits between menu and cart, ensure it doesn't push items off */
+@media (min-width: 761px) {
+  .nav-menu { margin-right: 12px; }
+  .cart-counter { margin-left: 12px; }
+}
+
 /* Hero Section */
 .hero {
   height: 100vh;
   margin-top: -70px; /* Negative margin to compensate for main-content padding */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-image: linear-gradient(rgba(124, 124, 124, 0.5), rgba(148, 147, 147, 0.671)),
+    url('/img/hero.png');
   background-size: cover;
   background-position: center;
   background-attachment: scroll; /* Changed from fixed to avoid Chrome bug */

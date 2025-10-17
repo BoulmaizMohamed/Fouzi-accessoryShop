@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SearchController;
 
 // Home & products (assuming you already made ProductController)
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -16,7 +17,8 @@ Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
-
+// Add the search route (GET query param ?q=)
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
