@@ -18,16 +18,16 @@ class OrderForm
                     ->default(null),
                 TextInput::make('customer_name')
                     ->required(),
-                TextInput::make('customer_email')
+                TextInput::make('email')
                     ->email()
                     ->required(),
-                TextInput::make('customer_phone')
+                TextInput::make('phone')
                     ->tel()
                     ->required(),
                 Textarea::make('address')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('note')
+                Textarea::make('notes')
                     ->default(null)
                     ->columnSpanFull(),
                 TextInput::make('total')
