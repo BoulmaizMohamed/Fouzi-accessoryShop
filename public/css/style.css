@@ -946,6 +946,8 @@ select.form-control {
   padding: 80px 0;
   background-color: #fff;
   text-align: center;
+  margin-bottom: 100px;
+  margin-top: 100px;
 }
 
 .brands-grid {
@@ -1902,4 +1904,65 @@ select.form-control {
     .pagination-item:not(.active):not(.disabled):not(:first-child):not(:last-child):not(:nth-child(2)):not(:nth-last-child(2)) {
         display: none;
     }
+}
+
+
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.products-header .section-title {
+  margin-bottom: 0;
+}
+
+.see-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: #e60000;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.2);
+}
+
+.see-all-link:hover {
+  background-color: #c50000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 0, 0, 0.3);
+  color: white;
+}
+
+.see-all-link svg {
+  transition: transform 0.3s ease;
+}
+
+.see-all-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* Responsive Design for Products Header */
+@media (max-width: 768px) {
+  .products-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .products-header .section-title {
+    font-size: 2rem;
+  }
+  
+  .see-all-link {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
 }

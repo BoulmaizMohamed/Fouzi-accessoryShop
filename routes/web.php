@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ContactUsController;
+
 
 // Home & products (assuming you already made ProductController)
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -29,3 +31,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/dashboard', [ProductController::class, 'home'])->name('dashboard');
+Route::post('/contact', [ContactUsController::class, 'store'])->name('contact.store');

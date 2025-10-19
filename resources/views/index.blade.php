@@ -60,7 +60,15 @@
 <!-- Products Preview Section -->
 <section id="products" class="products">
     <div class="container">
-        <h2 class="section-title">Nos Produits</h2>
+        <div class="products-header">
+            <h2 class="section-title">Nos Produits</h2>
+            <a href="{{ route('products.index') }}" class="see-all-link">
+                Voir tout
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
         <div class="products-grid">
             @forelse($products as $product)
                 <div class="product-card">
@@ -127,13 +135,17 @@
                 </div>
             </div>
             <div class="contact-form-container">
-                <form class="contact-form">
+                <form class="contact-form" action="{{ route('contact.store') }}" method="POST">
+                    @csrf
                     <h3>Envoyez-nous un message</h3>
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Nom" required class="form-input">
                     </div>
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Email" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Téléphone" required class="form-input">
                     </div>
                     <div class="form-group">
                         <textarea name="message" placeholder="Message" required class="form-textarea"></textarea>

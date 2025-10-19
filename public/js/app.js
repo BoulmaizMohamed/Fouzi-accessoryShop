@@ -417,10 +417,11 @@ if (contactForm) {
         const formData = new FormData(contactForm);
         const name = formData.get('name').trim();
         const email = formData.get('email').trim();
+        const phone = formData.get('phone').trim();
         const message = formData.get('message').trim();
         
         // Basic validation
-        if (!name || !email || !message) {
+        if (!name || !email || !phone || !message) {
             showNotification('Veuillez remplir tous les champs', 'error');
             return;
         }
@@ -432,19 +433,13 @@ if (contactForm) {
             return;
         }
         
-        // Simulate form submission
+        // If validation passes, submit the form
         const submitButton = contactForm.querySelector('.form-submit');
-        const originalText = submitButton.textContent;
-        
         submitButton.textContent = 'Envoi en cours...';
         submitButton.disabled = true;
         
-        setTimeout(() => {
-            showNotification('Message envoyé avec succès!', 'success');
-            contactForm.reset();
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-        }, 1500);
+        // Actually submit the form to Laravel
+        contactForm.submit();
     });
 }
 
