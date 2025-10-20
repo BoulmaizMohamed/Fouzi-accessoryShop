@@ -932,7 +932,7 @@ select.form-control {
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-bottom: 50px;
   color: #000;
 }
