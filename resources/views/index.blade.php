@@ -119,19 +119,19 @@
                 <h3>Informations de contact</h3>
                 <div class="contact-item">
                     <strong>Adresse:</strong>
-                    <p>123 Avenue de la République, 75011 Paris</p>
+                    <p>Zghaya, wilaya de Mila, à côté de la station de transport des voyageurs, 43012</p>
                 </div>
                 <div class="contact-item">
                     <strong>Téléphone:</strong>
-                    <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                    <p><a href="tel:0563 65 42 35">0563654235</a>  / <a href="tel:0540501017">0540501017</a></p>
                 </div>
                 <div class="contact-item">
                     <strong>Email:</strong>
-                    <p><a href="mailto:contact@autopiecesrm.fr">contact@autopiecesrm.fr</a></p>
+                    <p><a href="mailto:Pieceautodz43@gmail.com">Pieceautodz43@gmail.com</a></p>
                 </div>
                 <div class="contact-item">
                     <strong>Horaires:</strong>
-                    <p>Lun-Ven: 8h-18h, Sam: 8h-12h</p>
+                    <p>Lun–Ven : 8h–18h, Sam : 8h–12h</p>
                 </div>
             </div>
             <div class="contact-form-container">
