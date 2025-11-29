@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Auto Pièces R.M - Pièces détachées automobiles')
-@section('description', 'Auto Pièces R.M - Votre spécialiste en pièces détachées pour Peugeot, Renault, Citroën et Dacia')
+@section('title', 'King Auto - Accessoires et équipements automobiles')
+@section('description', 'King Auto - Votre spécialiste en accessoires ')
 @section('nav-home', 'active')
 
 @section('content')
@@ -9,15 +9,15 @@
 <section id="home" class="hero">
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1 class="hero-title">Votre partenaire de confiance pour les pièces auto</h1>
-            <p class="hero-subtitle">Pièces détachées de qualité pour Peugeot, Renault, Citroën et Dacia</p>
+            <h1 class="hero-title">Votre partenaire de confiance pour les Accessoires automobiles</h1>
+            <p class="hero-subtitle">Accessoires automobiles de qualité pour toutes les marques et tous les modèles de voitures</p>
             <a href="{{ route('products.index') }}" class="cta-button">Voir nos produits</a>
         </div>
     </div>
 </section>
-
+</br></br></br>
 <!-- Brands Section -->
-<section id="brands" class="brands">
+ <!-- <section id="brands" class="brands">
     <div class="container">
         <div class="brands-grid">
             <div class="brand-item">
@@ -54,7 +54,7 @@
             
         </div>
     </div>
-</section>
+</section> -->
 
 
 <!-- Products Preview Section -->
@@ -100,8 +100,10 @@
         <h2 class="section-title">À Propos</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Auto Pièces R.M est votre spécialiste en pièces détachées automobiles. Nous proposons une large gamme de pièces de qualité pour les marques Peugeot, Renault, Citroën et Dacia. Avec plus de 15 ans d'expérience, notre équipe vous garantit des pièces authentiques et un service client exceptionnel.</p>
-                <p>Notre expertise nous permet de vous conseiller et de vous fournir les pièces adaptées à votre véhicule, que ce soit pour l'entretien courant ou les réparations plus complexes.</p>
+                <p>King Auto est votre spécialiste en accessoires automobiles.
+Nous proposons une large gamme d’accessoires de qualité adaptés à toutes les marques et tous les modèles de voitures.
+Avec plus de 10 ans d’expérience, notre équipe vous garantit des produits fiables, un large choix et un service client exceptionnel.</p>
+                <p>Notre expertise nous permet de vous conseiller et de vous fournir les accessoires adaptés à votre véhicule, que ce soit pour l’améliorer, le personnaliser ou le rendre plus confortable.</p>
             </div>
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Atelier automobile" class="about-img">
@@ -119,15 +121,15 @@
                 <h3>Informations de contact</h3>
                 <div class="contact-item">
                     <strong>Adresse:</strong>
-                    <p>Zghaya, wilaya de Mila, à côté de la station de transport des voyageurs, 43012</p>
+                    <p>F57H+X2H, N79, Zeghaia 43012</p>
                 </div>
                 <div class="contact-item">
                     <strong>Téléphone:</strong>
-                    <p><a href="tel:0563 65 42 35">0563654235</a>  / <a href="tel:0540501017">0540501017</a></p>
+                    <p><a href="tel:055555555">05555555555</a>  / <a href="tel:0555555555">05555555555</a></p>
                 </div>
                 <div class="contact-item">
                     <strong>Email:</strong>
-                    <p><a href="mailto:Pieceautodz43@gmail.com">Pieceautodz43@gmail.com</a></p>
+                    <p><a href="mailto:fouzi@gmail.com">fouzi@gmail.com</a></p>
                 </div>
                 <div class="contact-item">
                     <strong>Horaires:</strong>
@@ -156,7 +158,7 @@
         </div>
         <div class="map-container">
             <iframe 
-               src="https://www.google.com/maps/d/u/0/embed?mid=1-KywNZx52zXay-TJNrZPyHLMZxZ9KzQ&ehbc=2E312F&noprof=1"
+               src="https://www.google.com/maps/d/u/0/embed?mid=1atEq1piYO7_r3KiZ7UQGjEi-nDlVZPg&ehbc=2E312F&noprof=1"
                 width="100%" 
                 height="400" 
                 style="border:0; border-radius: 10px;" 

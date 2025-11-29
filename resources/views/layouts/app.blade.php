@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('description', 'Auto Pièces R.M - Votre spécialiste en pièces détachées pour Peugeot, Renault, Citroën et Dacia')">
-    <title>@yield('title', 'Auto Pièces R.M - Pièces détachées automobiles')</title>
+    <meta name="description" content="@yield('description', 'King Auto - Votre spécialiste en Accessoires automobiles pour Peugeot, Renault, Citroën et Dacia')">
+    <title>@yield('title', 'King Auto - Accessoires automobiles automobiles')</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
             <div class="nav-container">
                 <div class="nav-logo">
                     <div class="logo-placeholder">
-                        <span class="logo-text">AUTO PIÈCES R.M</span>
+                        <span class="logo-text">King Auto</span>
                     </div>
                 </div>
                 <ul class="nav-menu">
@@ -76,12 +76,12 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <p>&copy; {{ date('Y') }} Auto Pièces R.M - Tous droits réservés</p>
+                    <p>&copy; {{ date('Y') }} King Auto - Tous droits réservés</p>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61580660927336" target="_blank" class="social-link">Facebook</a>
+                    <a href="#" target="_blank" class="social-link">Facebook</a>
                     <a href="#" target="_blank" class="social-link">Instagram</a>
-                    <a href="https://api.whatsapp.com/send?phone=%2B213563654235&context=AfegSE1RlpKeTZGYO4Qn5cTYo7ij5AT-W9aW71lMRAuWX-m9kojED0hAgB2hI0fnuNE3PNNH-c9F9fEotPHWlQdG4vO6-L8FqnsZKEiLCPWmQyfIxstgjm6rD0gwIfxtyu1x9iI8X3AcIy2dvpSQ_NRqbA&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawNkMYVleHRuA2FlbQIxMABicmlkETEzU0lQOTVZZzNVYjJaU2RJAR6tAKZgYrQdy7t9pLGWhEbPozUtQ6LkyvJsoCUU72aMNFvyTUylWawJOGIpwA_aem_WYqYSzWTwhfORnk91-CbZg" target="_blank" class="social-link">WhatsApp</a>
+                    <a href="#" target="_blank" class="social-link">WhatsApp</a>
                 </div>
             </div>
         </div>

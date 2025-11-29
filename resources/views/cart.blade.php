@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Panier - Auto Pièces R.M')
+@section('title', 'Panier - King Auto')
 @section('nav-cart', 'active')
 
 @section('content')

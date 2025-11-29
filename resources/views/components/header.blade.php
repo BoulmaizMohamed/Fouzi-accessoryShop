@@ -3,7 +3,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <div class="logo-placeholder">
-                    <span class="logo-text">AUTO PIÈCES R.M</span>
+                    <span class="logo-text">King Auto</span>
                 </div>
             </div>
 

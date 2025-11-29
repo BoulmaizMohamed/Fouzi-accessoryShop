@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Produits - Auto Pièces R.M')
-@section('description', 'Catalogue complet de pièces détachées - Auto Pièces R.M')
+@section('title', 'Produits - King Auto')
+@section('description', 'Catalogue complet de Accessoires automobiles - King Auto')
 @section('nav-products', 'active')
 
 @section('content')
