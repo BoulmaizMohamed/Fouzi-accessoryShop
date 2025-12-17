@@ -125,11 +125,11 @@ Avec plus de 10 ans d’expérience, notre équipe vous garantit des produits fi
                 </div>
                 <div class="contact-item">
                     <strong>Téléphone:</strong>
-                    <p><a href="tel:055555555">05555555555</a>  / <a href="tel:0555555555">05555555555</a></p>
+                    <p><a href="tel:055555555">0784194608</a> </p>
                 </div>
                 <div class="contact-item">
                     <strong>Email:</strong>
-                    <p><a href="mailto:fouzi@gmail.com">fouzi@gmail.com</a></p>
+                    <p><a href="mailto:samibob422@gmail.com">samibob422@gmail.com</a></p>
                 </div>
                 <div class="contact-item">
                     <strong>Horaires:</strong>

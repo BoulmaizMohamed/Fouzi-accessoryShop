@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
 
     // Paginate — change 9 to the number of products per page you want
-    $products = $query->latest()->paginate(4);
+    $products = $query->latest()->paginate(9);
 
     // For the filter buttons
     $categories = Category::pluck('name');
